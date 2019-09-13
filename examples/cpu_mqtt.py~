@@ -144,7 +144,7 @@ def main():
     GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     
     while True:
-    	if GPIO.input(10) == GPIO.HIGH:
+    	if GPIO.input(10) != GPIO.HIGH:
     		payload = '{}/{} Time {} data: {}'.format(args.registry_id, args.device_id, strftime("%Y-%m-%d %H:%M:%S", gmtime()), "Button was pushed!")
     		print('Publishing message {}'.format(payload))
     		client.publish(mqtt_topic, payload, qos=1)
